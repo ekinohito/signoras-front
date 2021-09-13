@@ -1,26 +1,23 @@
 import React from 'react'
-import {Type} from "../data/types";
-import {Button, Card, CardActions, CardContent, Typography, Box} from "@mui/material";
-import Image from 'next/image'
+import {Box, ToggleButton, Typography} from "@mui/material";
+import {RootState, useAppDispatch} from "./redux/store";
+import {setType} from "./redux/typeSlice";
+import {Type, types} from "../data/types";
+import {useSelector} from "react-redux";
 
-export default function TypeChoiceTab(props: {types: Type[]}) {
-    return <>
-        {props.types.map(value => <Card key={value.id}>
-            <CardContent>
-                <Box sx={{display: "flex", flexWrap: "wrap", flexDirection: "row"}}>
-                    <Box sx={{mr: 2}}>
-                        <Image src={value.image} width={240} height={160} objectFit="fill" alt="no"/>
-                    </Box>
-                    <Box sx={{display: "flex", flexGrow: 1, flexDirection: "column", justifyContent: "space-between", alignItems: "start"}}>
-
-                        <Typography variant="h5">{value.title}</Typography>
-                        <Typography variant="body1">{value.description}</Typography>
-                        <Button sx={{alignSelf: "end", justifySelf: "stretch"}}>Далее</Button>
-                    </Box>
-                </Box>
-            </CardContent>
-            <CardActions>
-            </CardActions>
-        </Card>)}
-    </>
+export default function TypeChoiceTab() {
+    const type = useSelector<RootState, Type | null>(state => state.type.type)
+    const dispatch = useAppDispatch()
+    return <Box sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center"}}>
+        {types.map(value => <ToggleButton
+            onChange={() => dispatch(setType(value))}
+            selected={type !== null && type.id === value.id}
+            key={value.id}
+            value={value.id}
+            sx={{maxWidth: 250, mx: 2, display: "flex", flexDirection: "column", textTransform: "none"}}>
+            <Typography color="primary">{value.image}</Typography>
+            <Typography variant="h5">{value.title}</Typography>
+            <Typography variant="subtitle1">{value.description}</Typography>
+        </ToggleButton>)}
+    </Box>
 }

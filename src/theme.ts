@@ -9,5 +9,8 @@ export const theme = createTheme({
         secondary: {
             main: "#fff32a"
         },
+    },
+    typography: {
+        fontFamily: "Montserrat",
     }
 })
