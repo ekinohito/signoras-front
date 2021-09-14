@@ -5,7 +5,7 @@ import {goto} from "./redux/stepSlice";
 
 export default function View(props: {children: any}) {
     return <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-        <Box sx={{mt: 4, display: "inline-flex", flexDirection: "column", alignItems: "center"}}>
+        <Box sx={{display: "inline-flex", flexDirection: "column", alignItems: "center"}}>
             {props.children}
         </Box>
     </Box>

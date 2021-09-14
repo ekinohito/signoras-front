@@ -1,7 +1,7 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import Header from "../src/Header";
-import { Button, Container, Stack, Typography} from "@mui/material";
+import {Box, Button, Container, Stack, Typography} from "@mui/material";
 import TypeChoiceTab from "../src/TypeChoiceTab";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../src/redux/store";
@@ -12,6 +12,7 @@ import SwipeableViews from 'react-swipeable-views';
 import CustomStepper from "../src/CustomStepper";
 import View from "../src/View";
 import PrintableReport from "../src/PrintableReport";
+import NextButton from "../src/NextButton";
 
 const Home: NextPage = () => {
     const step = useSelector<RootState, number>(state => state.step.value)
@@ -27,39 +28,32 @@ const Home: NextPage = () => {
             </Head>
             <Header/>
             <Container>
-                <Stack spacing={4}>
-                    <Typography variant="h3" sx={{textAlign: "center", fontWeight: "500", mt: 8}}>Оценка залогового имущества</Typography>
-                    <Typography variant="subtitle1" sx={{textAlign: "center"}}>Наш сервис помогает оценить недвижимость и автомобили</Typography>
+                <Stack spacing={6}>
+                    <Box>
+                        <Typography variant="h3" sx={{textAlign: "center", fontWeight: "500", mt: 6, mb: 1}}>Оценка залогового имущества</Typography>
+                        <Typography variant="h5" sx={{textAlign: "center"}}>Наш сервис помогает оценить недвижимость и автомобили</Typography>
+                    </Box>
                     <CustomStepper steps={['Выберите тип', 'Введите данные', 'Заберите результат']} step={step}/>
-                    <SwipeableViews index={step}>
-                        <View>
-                            <TypeChoiceTab/>
-                            <Button
-                                color="primary"
-                                variant="contained"
-                                disabled={!ready}
-                                sx={{alignSelf: "stretch", mx: 2, mt: 4, textTransform: "none"}}
-                                onClick={() => {
-                                    dispatch(goto(1))
-                                }}>Далее</Button>
-                        </View>
-                        <View>
-                            <InputFieldsTab/>
-                            <Button
-                                color="primary"
-                                variant="contained"
-                                disabled={!ready}
-                                sx={{alignSelf: "stretch", mx: 2, mt: 4, textTransform: "none"}}
-                                onClick={() => {
-                                    dispatch(goto(2))
-                                }}>Далее</Button>
-                            <Button onClick={() => dispatch(prev())}>Назад</Button>
-                        </View>
-                        <View>
-                            <Button onClick={() => dispatch(prev())}>Назад</Button>
-                            <PrintableReport/>
-                        </View>
-                    </SwipeableViews>
+                    <Box>
+                        <SwipeableViews index={step}>
+                            <View>
+                                <Typography variant="h5" sx={{textAlign: "center", mb: 3}}>Выберите тип залогового имущества:</Typography>
+                                <TypeChoiceTab/>
+                                <NextButton ready={ready} index={1}/>
+                            </View>
+                            <View>
+                                <Typography variant="h5" sx={{textAlign: "center", mb: 3}}>Введите полученные от клиента данные о залоговом имуществе:</Typography>
+                                <InputFieldsTab/>
+                                <NextButton ready={ready} index={2}/>
+                                <Button onClick={() => dispatch(prev())}>Назад</Button>
+                            </View>
+                            <View>
+                                <Button onClick={() => dispatch(prev())}>Назад</Button>
+                                <PrintableReport/>
+                            </View>
+                        </SwipeableViews>
+                    </Box>
+
                 </Stack>
             </Container>
         </>

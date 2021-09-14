@@ -3,10 +3,16 @@
     The standard PDF fonts do not support Unicode characters.
 */
 .printable * {
-    font-family: "Montserrat", sans-serif !important;
+    font-family: "DejaVu Sans", sans-serif !important;
 }
 
 .wrapper {
     /*height: 0;*/
     overflow: hidden;
+}
+
+@font-face {
+    font-family: "DejaVu Sans";
+    font-weight: bold;
+    src: url("/assets/DejaVuSans.ttf") format("truetype");
 }

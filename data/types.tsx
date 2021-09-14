@@ -16,6 +16,18 @@ export type Type = {
 
 export const types: Type[] = [
     {
+        id: "estate",
+        title: "Недвижимость",
+        description: "Нажмите сюда, если клиент предлагет недвижимость",
+        image: <Home sx={{fontSize: 100}}/>,
+        fields: [
+            {
+                id: "address",
+                placeholder: "Адрес квартиры"
+            }
+        ]
+    },
+    {
         id: "auto",
         title: "Автомобиль",
         description: "Нажмите сюда, если клиент предлагет автомобиль",
@@ -27,16 +39,4 @@ export const types: Type[] = [
             }
         ]
     },
-    {
-        id: "estate",
-        title: "Недвижимость",
-        description: "Нажмите сюда, если клиент предлагет недвижимость",
-        image: <Home sx={{fontSize: 100}}/>,
-        fields: [
-            {
-                id: "address",
-                placeholder: "Адрес квартиры"
-            }
-        ]
-    }
 ]

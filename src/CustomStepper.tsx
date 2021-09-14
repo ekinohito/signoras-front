@@ -11,16 +11,17 @@ import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { StepIconProps } from '@mui/material/StepIcon';
 import {CheckRounded} from "@mui/icons-material";
+import {Typography} from "@mui/material";
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
         top: 22,
     },
     [`& .${stepConnectorClasses.line}`]: {
-        height: 3,
+        height: 7,
         border: 0,
         backgroundColor:
-            theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+            theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#ccc',
         borderRadius: 1,
     },
     [`&.${stepConnectorClasses.active} .${stepConnectorClasses.line}`]: {
@@ -55,7 +56,7 @@ function ColorlibStepIcon(props: StepIconProps) {
     const { active, completed, className } = props;
     return (
         <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
-            {completed?<CheckRounded/>:props.icon}
+            {completed?<CheckRounded/>:<Typography sx={{fontSize: "1.5rem", fontWeight: "bold"}}>{props.icon}</Typography>}
         </ColorlibStepIconRoot>
     );
 }
