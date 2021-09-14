@@ -1,7 +1,7 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import Header from "../src/Header";
-import {Box, Button, Container, Stack, Typography} from "@mui/material";
+import { Button, Container, Stack, Typography} from "@mui/material";
 import TypeChoiceTab from "../src/TypeChoiceTab";
 import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../src/redux/store";

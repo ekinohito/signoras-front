@@ -13,7 +13,6 @@ import {ThemeProvider} from "@mui/material";
 import {theme} from "../src/theme";
 import {Provider} from "react-redux";
 import {store} from "../src/redux/store";
-import {Head} from "next/document";
 
 function MyApp({Component, pageProps}: AppProps) {
     return <Provider store={store}>
