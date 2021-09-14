@@ -3,7 +3,9 @@ import {Home, DirectionsCar} from "@mui/icons-material";
 
 export type Field = {
     id: string,
-    placeholder: string
+    placeholder: string,
+    type: 'string' | 'number' | 'choice',
+    options?: number
 }
 
 export type Type = {
@@ -22,8 +24,34 @@ export const types: Type[] = [
         image: <Home sx={{fontSize: 100}}/>,
         fields: [
             {
+                type: "string",
                 id: "address",
                 placeholder: "Адрес квартиры"
+            },
+            {
+                type: "number",
+                id: "address1",
+                placeholder: "Номер(телефона)"
+            },
+            {
+                type: "number",
+                id: "address2",
+                placeholder: "Номер(телефона)"
+            },
+            {
+                type: "number",
+                id: "address3",
+                placeholder: "Номер(телефона)"
+            },
+            {
+                type: "number",
+                id: "address4",
+                placeholder: "Номер(телефона)"
+            },
+            {
+                type: "number",
+                id: "address5",
+                placeholder: "Номер(телефона)"
             }
         ]
     },
@@ -34,6 +62,7 @@ export const types: Type[] = [
         image: <DirectionsCar sx={{fontSize: 100}}/>,
         fields: [
             {
+                type: "string",
                 id: "type",
                 placeholder: "Тип автомобиля"
             }
