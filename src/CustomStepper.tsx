@@ -10,22 +10,11 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { StepIconProps } from '@mui/material/StepIcon';
+import {CheckRounded} from "@mui/icons-material";
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
         top: 22,
-    },
-    [`&.${stepConnectorClasses.active}`]: {
-        [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
-        },
-    },
-    [`&.${stepConnectorClasses.completed}`]: {
-        [`& .${stepConnectorClasses.line}`]: {
-            backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
-        },
     },
     [`& .${stepConnectorClasses.line}`]: {
         height: 3,
@@ -33,6 +22,12 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
         backgroundColor:
             theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
         borderRadius: 1,
+    },
+    [`&.${stepConnectorClasses.active} .${stepConnectorClasses.line}`]: {
+        backgroundColor: theme.palette.primary.main,
+    },
+    [`&.${stepConnectorClasses.completed} .${stepConnectorClasses.line}`]: {
+        backgroundColor: theme.palette.primary.main,
     },
 }));
 
@@ -49,34 +44,24 @@ const ColorlibStepIconRoot = styled('div')<{
     justifyContent: 'center',
     alignItems: 'center',
     ...(ownerState.active && {
-        backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
-        boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+        backgroundColor: theme.palette.primary.main,
     }),
     ...(ownerState.completed && {
-        backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+        backgroundColor: theme.palette.primary.main,
     }),
 }));
 
 function ColorlibStepIcon(props: StepIconProps) {
     const { active, completed, className } = props;
-
-    const icons: { [index: string]: React.ReactElement } = {
-        1: <SettingsIcon />,
-        2: <GroupAddIcon />,
-        3: <VideoLabelIcon />,
-    };
-
     return (
         <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
-            {icons[String(props.icon)]}
+            {completed?<CheckRounded/>:props.icon}
         </ColorlibStepIconRoot>
     );
 }
 
-export default function CustomStepper(props: {steps: string[]}) {
-    return <Stepper alternativeLabel activeStep={1} connector={<ColorlibConnector />}>
+export default function CustomStepper(props: {steps: string[], step: number}) {
+    return <Stepper alternativeLabel activeStep={props.step} connector={<ColorlibConnector />}>
         {props.steps.map((label) => (
             <Step key={label}>
                 <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>

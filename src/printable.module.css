@@ -1,0 +1,12 @@
+/*
+    Use the DejaVu Sans font for displaying and embedding in the PDF file.
+    The standard PDF fonts do not support Unicode characters.
+*/
+.printable * {
+    font-family: "Montserrat", sans-serif !important;
+}
+
+.wrapper {
+    /*height: 0;*/
+    overflow: hidden;
+}
