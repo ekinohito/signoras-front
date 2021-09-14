@@ -4,6 +4,7 @@
 */
 .printable * {
     font-family: "DejaVu Sans", sans-serif !important;
+    font-weight: normal !important;
 }
 
 .wrapper {
@@ -13,6 +14,6 @@
 
 @font-face {
     font-family: "DejaVu Sans";
-    font-weight: bold;
+    font-weight: normal;
     src: url("/assets/DejaVuSans.ttf") format("truetype");
 }
