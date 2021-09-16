@@ -9,7 +9,7 @@ export type Option = {
 export type Field = {
     id: string,
     placeholder: string,
-    type: 'string' | 'number' | 'choice',
+    type: 'string' | 'number' | 'choice' | 'address',
     options?: Option[]
 }
 
@@ -100,7 +100,7 @@ export const typeStorage: TypeStorage = {
                     placeholder: "Жилая площадь"
                 },
                 {
-                    type: "string",
+                    type: "address",
                     id: "address",
                     placeholder: "Адрес"
                 },

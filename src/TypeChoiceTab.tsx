@@ -7,9 +7,7 @@ import {useSelector} from "react-redux";
 
 export default function TypeChoiceTab() {
     useEffect(() => {(async () => {
-        // const res = await fetch("")
-        // const data = await res.json()
-        // console.log(data)
+
     })()}, [])
     const type = useSelector<RootState, Type | false>(state => state.type.typeId !== null && typeStorage.values[state.type.typeId])
     const dispatch = useAppDispatch()

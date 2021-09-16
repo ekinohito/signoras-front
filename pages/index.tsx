@@ -13,10 +13,11 @@ import CustomStepper from "../src/CustomStepper";
 import View from "../src/View";
 import PrintableReport from "../src/PrintableReport";
 import NextButton from "../src/NextButton";
+import FetchButton from "../src/FetchButton";
 
 const Home: NextPage = () => {
     const step = useSelector<RootState, number>(state => state.step.value)
-    const ready = useSelector<RootState, boolean>(state => state.type.type !== null)
+    const ready = useSelector<RootState, boolean>(state => state.type.typeId !== null)
     const dispatch = useAppDispatch()
     return (
         <>
@@ -48,8 +49,9 @@ const Home: NextPage = () => {
                                 <Button onClick={() => dispatch(prev())}>Назад</Button>
                             </View>
                             <View>
-                                <Button onClick={() => dispatch(prev())}>Назад</Button>
+                                <FetchButton ready={true} index={0}/>
                                 <PrintableReport/>
+                                <Button onClick={() => dispatch(prev())}>Назад</Button>
                             </View>
                         </SwipeableViews>
                     </Box>
