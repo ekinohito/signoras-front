@@ -2,17 +2,17 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Type} from "../../data/types";
 
 interface TypeState {
-    type: Type | null
+    typeId: string | null
 }
 
-const initialState = {type: null} as TypeState
+const initialState = {typeId: null} as TypeState
 
 const typeSlice = createSlice({
     name: "step",
     initialState,
     reducers: {
-        setType(state, action: PayloadAction<Type>) {
-            state.type = action.payload
+        setType(state, action: PayloadAction<string>) {
+            state.typeId = action.payload
         }
     }
 })

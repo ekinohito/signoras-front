@@ -1,17 +1,22 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Box, ToggleButton, Typography} from "@mui/material";
 import {RootState, useAppDispatch} from "./redux/store";
 import {setType} from "./redux/typeSlice";
-import {Type, types} from "../data/types";
+import {Type, types, typeStorage} from "../data/types";
 import {useSelector} from "react-redux";
 
 export default function TypeChoiceTab() {
-    const type = useSelector<RootState, Type | null>(state => state.type.type)
+    useEffect(() => {(async () => {
+        // const res = await fetch("")
+        // const data = await res.json()
+        // console.log(data)
+    })()}, [])
+    const type = useSelector<RootState, Type | false>(state => state.type.typeId !== null && typeStorage.values[state.type.typeId])
     const dispatch = useAppDispatch()
     return <Box sx={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center"}}>
         {types.map(value => <ToggleButton
-            onChange={() => dispatch(setType(value))}
-            selected={type !== null && type.id === value.id}
+            onChange={() => dispatch(setType(value.id))}
+            selected={type && type.id === value.id}
             key={value.id}
             value={value.id}
             sx={{width: 225, height: 225, mx: 2, display: "flex", flexDirection: "column", textTransform: "none"}}>

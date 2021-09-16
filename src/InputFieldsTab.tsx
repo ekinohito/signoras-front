@@ -1,20 +1,20 @@
 import React from 'react'
-import {Type} from "../data/types";
+import {Type, typeStorage} from "../data/types";
 import {Box, TextField, Typography} from "@mui/material";
 import {RootState, useAppDispatch} from "./redux/store";
 import {useSelector} from "react-redux";
 import TextInput from "./TextInput";
 import FloatInput from "./FloatInput";
+import ChoiceInput from "./ChoiceInput";
 
 export default function InputFieldsTab() {
-    const dispatch = useAppDispatch()
-    const type = useSelector<RootState, Type | null>(state => state.type.type)
+    const type = useSelector<RootState, Type | false>(state => state.type.typeId !== null && typeStorage.values[state.type.typeId])
     return <Box flexDirection="row" display="flex" justifyContent="center">
         <Box flexShrink={0} flexBasis={150}>
-            <Typography color="primary">{type?.image}</Typography>
+            <Typography color="primary">{type && type.image}</Typography>
         </Box>
         <Box display="flex" flexGrow={1} flexWrap="wrap">
-            {type?.fields.map(value => {
+            {type && type.fields.map(value => {
                 let inner = null
                 switch (value.type) {
                     case "string":
@@ -24,7 +24,7 @@ export default function InputFieldsTab() {
                         inner = <FloatInput label={value.placeholder} id={value.id}/>
                         break
                     case "choice":
-                        inner = <></>
+                        inner = <ChoiceInput label={value.placeholder} id={value.id} options={value.options}/>
                 }
                 return <Box flexBasis="200px" sx={{m: 1}} key={value.id}>
                     {inner}
