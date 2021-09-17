@@ -14,10 +14,12 @@ import View from "../src/View";
 import PrintableReport from "../src/PrintableReport";
 import NextButton from "../src/NextButton";
 import FetchButton from "../src/FetchButton";
+import {typeStorage} from "../data/types";
 
 const Home: NextPage = () => {
     const step = useSelector<RootState, number>(state => state.step.value)
-    const ready = useSelector<RootState, boolean>(state => state.type.typeId !== null)
+    const ready1 = useSelector<RootState, boolean>(state => state.type.typeId !== null)
+    const ready2 = useSelector<RootState, boolean>(state => state.type.typeId !== null && typeStorage.values[state.type.typeId].fields.every(value => !!state.arguments.arguments[value.id]))
     const dispatch = useAppDispatch()
     return (
         <>
@@ -40,16 +42,16 @@ const Home: NextPage = () => {
                             <View>
                                 <Typography variant="h5" sx={{textAlign: "center", mb: 3}}>Выберите тип залогового имущества:</Typography>
                                 <TypeChoiceTab/>
-                                <NextButton ready={ready} index={1}/>
+                                <NextButton ready={ready1} index={1}/>
                             </View>
                             <View>
                                 <Typography variant="h5" sx={{textAlign: "center", mb: 3}}>Введите полученные от клиента данные о залоговом имуществе:</Typography>
                                 <InputFieldsTab/>
-                                <NextButton ready={ready} index={2}/>
+                                <NextButton ready={ready2} index={2}/>
                                 <Button onClick={() => dispatch(prev())}>Назад</Button>
                             </View>
                             <View>
-                                <FetchButton ready={true} index={0}/>
+                                <FetchButton ready={ready2} index={0}/>
                                 <PrintableReport/>
                                 <Button onClick={() => dispatch(prev())}>Назад</Button>
                             </View>

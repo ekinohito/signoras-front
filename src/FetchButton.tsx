@@ -2,7 +2,7 @@ import React from 'react'
 import {Button} from "@mui/material";
 import api from "./api";
 import {useAppDispatch, useAppSelector} from "./redux/store";
-import {setResult} from "./redux/resultSlice";
+import {abortFetching, setResult, startFetching} from "./redux/resultSlice";
 import {typeStorage} from "../data/types";
 
 export default function FetchButton(props: { ready: boolean, index: number }) {
@@ -17,11 +17,13 @@ export default function FetchButton(props: { ready: boolean, index: number }) {
         onClick={async () => {
             if (!type) return
             try {
+                dispatch(startFetching())
                 const res = await api.post(type.id, data)
                 console.log(res.data)
                 dispatch(setResult(res.data.prediction))
             } catch (e) {
                 console.warn(e)
+                dispatch(abortFetching())
             }
         }}>Получить результат</Button>
 }

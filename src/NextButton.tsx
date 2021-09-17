@@ -2,6 +2,7 @@ import React from 'react'
 import {Button} from "@mui/material";
 import {goto} from "./redux/stepSlice";
 import {useDispatch} from "react-redux";
+import {abortFetching} from "./redux/resultSlice";
 
 export default function NextButton(props: {ready: boolean, index: number}) {
     const dispatch = useDispatch()
@@ -11,6 +12,7 @@ export default function NextButton(props: {ready: boolean, index: number}) {
         disabled={!props.ready}
         sx={{mx: 2, mt: 4, textTransform: "none", fontSize: "1.5rem", width: "200px", py: 2, borderRadius: "10px"}}
         onClick={() => {
+            dispatch(abortFetching())
             dispatch(goto(props.index))
         }}>Далее</Button>
 }
