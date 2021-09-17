@@ -88,3 +88,8 @@ export const estate: Type = {
         },
     ]
 }
+
+export function getMaterial(id: string) {
+    // @ts-ignore
+    return estate.fields[2].options.find(value => value.id === id)?.text || "Неважно"
+}

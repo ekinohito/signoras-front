@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 import {RootState, useAppDispatch} from "../src/redux/store";
 import {goto, prev} from "../src/redux/stepSlice";
 import InputFieldsTab from "../src/InputFieldsTab";
-import React from "react";
+import React, {useEffect} from "react";
 import SwipeableViews from 'react-swipeable-views';
 import CustomStepper from "../src/CustomStepper";
 import View from "../src/View";
@@ -15,12 +15,19 @@ import PrintableReport from "../src/PrintableReport";
 import NextButton from "../src/NextButton";
 import FetchButton from "../src/FetchButton";
 import {typeStorage} from "../data/types";
+import TableReport from "../src/TableReport";
+import api from "../src/api";
 
 const Home: NextPage = () => {
     const step = useSelector<RootState, number>(state => state.step.value)
     const ready1 = useSelector<RootState, boolean>(state => state.type.typeId !== null)
     const ready2 = useSelector<RootState, boolean>(state => state.type.typeId !== null && typeStorage.values[state.type.typeId].fields.every(value => !!state.arguments.arguments[value.id]))
     const dispatch = useAppDispatch()
+    useEffect(() => {
+        api.get("")
+        const timer = setInterval(() => api.get(""), 900000)
+        return () => clearInterval(timer)
+    }, [])
     return (
         <>
             <Head>

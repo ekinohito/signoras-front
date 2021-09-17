@@ -1,6 +1,6 @@
 import {
     Button, CircularProgress,
-    Paper,
+    Paper, Stack,
     Table,
     TableBody,
     TableCell,
@@ -14,6 +14,7 @@ import React, {useRef} from "react";
 import styles from "./printable.module.css"
 import {useAppSelector} from "./redux/store";
 import {typeStorage} from "../data/types";
+import TableReport from "./TableReport";
 
 export default function PrintableReport() {
     const pdfExport = useRef<PDFExport>(null)
@@ -69,9 +70,11 @@ export default function PrintableReport() {
                 </div>
             </PDFExport>
         </div>
-
-        <Button variant="contained" onClick={() => {
-            pdfExport.current?.save()
-        }}>Сохранить PDF</Button>
+        <Stack direction="row" spacing={1}>
+            <Button variant="outlined" onClick={() => {
+                pdfExport.current?.save()
+            }}>Сохранить PDF</Button>
+            <TableReport/>
+        </Stack>
     </>
 }
