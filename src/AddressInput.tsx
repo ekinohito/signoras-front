@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./redux/store";
 import {set} from "./redux/argumentsSlice";
 import {Option} from "../data/types";
+import api from "./api";
 
 const extractLL = ({ uri }: { uri?: string}) => {
     if (!uri) return null
@@ -25,9 +26,8 @@ export default function AddressInput(props: { label: string, id: string, options
         filterOptions={(x) => x}
         onInputChange={async (e, newValue) => {
             try {
-                const res = await fetch(`http://localhost:8000/y-proxy?part=${newValue}`)
-                const data = await res.json()
-                const entries = data.results.map((value: any) => {return {label: value.text, coords: extractLL(value)}}).filter((value: any) => value.coords)
+                const res = await api.get('y-proxy', {params: {part: newValue}})
+                const entries = res.data.results.map((value: any) => {return {label: value.text, coords: extractLL(value)}}).filter((value: any) => value.coords)
                 const newOptions: {[label: string]: any} = {}
                 setOptions(entries.map((value: any) => {
                     if (newOptions[value.label])
