@@ -1,11 +1,11 @@
-import {Home} from "@mui/icons-material";
+import {Apartment} from "@mui/icons-material";
 import {Type} from "./types";
 
 export const estate: Type = {
     id: "estate",
-    title: "Недвижимость",
+    title: "Квартира",
     description: "Нажмите сюда, если клиент предлагает недвижимость",
-    image: <Home sx={{fontSize: 100}}/>,
+    image: <Apartment sx={{fontSize: 100}}/>,
     fields: [
         {
             type: "number",

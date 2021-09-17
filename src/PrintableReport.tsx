@@ -16,7 +16,7 @@ export default function PrintableReport() {
             case "choice":
                 return {field: value, value: value.options && value.options.find(value1 => value1.id === state.arguments.arguments[value.id])?.text}
             case "address":
-                return {field: value, value: (state.arguments.arguments[value.id] as any).label}
+                return {field: value, value: (state.arguments.arguments[value.id] as any || {label: ''}).label}
         }
 
     }))

@@ -1,6 +1,7 @@
 import {ReactElement} from "react";
 import {car} from "./car";
 import {estate} from "./estate";
+import {house} from "./house";
 
 export type Option = {
     id: string,
@@ -28,9 +29,10 @@ export type TypeStorage = {
 }
 
 export const typeStorage: TypeStorage = {
-    ids: ["estate", "car"],
+    ids: ["estate", "house", "car"],
     values: {
         estate,
+        house,
         car,
     }
 }
