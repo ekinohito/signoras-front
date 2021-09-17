@@ -10,7 +10,7 @@ const extractLL = ({ uri }: { uri?: string}) => {
     const re: RegExp = /^ymapsbm1:\/\/geo\?ll=([-+]?\d*\.\d+|\d+)%2C([-+]?\d*\.\d+|\d+)&/
     const res = re.exec(uri)
     if (!res) return null
-    return {lon: res[2], lat: res[1]}
+    return {lon: res[1], lat: res[2]}
 }
 
 
