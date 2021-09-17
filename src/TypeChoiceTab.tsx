@@ -17,7 +17,7 @@ export default function TypeChoiceTab() {
             selected={type && type.id === value.id}
             key={value.id}
             value={value.id}
-            sx={{width: 225, height: 225, mx: 2, display: "flex", flexDirection: "column", textTransform: "none"}}>
+            sx={{width: 225, height: 225, m: 2, display: "flex", flexDirection: "column", textTransform: "none"}}>
             <Typography color="primary">{value.image}</Typography>
             <Typography variant="h5">{value.title}</Typography>
         </ToggleButton>)}

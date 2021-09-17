@@ -45,7 +45,7 @@ const Home: NextPage = () => {
                     </Box>
                     <CustomStepper steps={['Выберите тип', 'Введите данные', 'Заберите результат']} step={step}/>
                     <Box>
-                        <SwipeableViews index={step}>
+                        <SwipeableViews disabled index={step}>
                             <View>
                                 <Typography variant="h5" sx={{textAlign: "center", mb: 3}}>Выберите тип залогового имущества:</Typography>
                                 <TypeChoiceTab/>

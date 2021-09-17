@@ -11,7 +11,7 @@ import AddressInput from "./AddressInput";
 export default function InputFieldsTab() {
     const type = useSelector<RootState, Type | false>(state => state.type.typeId !== null && typeStorage.values[state.type.typeId])
     return <Box flexDirection="row" display="flex" justifyContent="center">
-        <Box flexShrink={0} flexBasis={150}>
+        <Box flexShrink={0} flexBasis={{xs: 50, md: 150}}>
             <Typography color="primary">{type && type.image}</Typography>
         </Box>
         <Box display="flex" flexGrow={1} flexWrap="wrap">

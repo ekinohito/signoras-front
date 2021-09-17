@@ -66,7 +66,7 @@ export default function TableReport() {
                 </tr>
                 <tr>
                     <td>Адрес объекта оценки</td>
-                    <td colSpan={6}>{(values.address as any).label}</td>
+                    <td colSpan={6}>{(values.address as any)?.label || ""}</td>
                 </tr>
                 <tr>
                     <td>Цель и задача оценки</td>
